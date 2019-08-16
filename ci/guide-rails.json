@@ -50,7 +50,7 @@
 					{
 						"name": "copy-jar",
 						"definition": "Copy final JAR to expected location",
-						"command": "cp -f target/((application.name))-*-SNAPSHOT.jar .",
+						"command": "cp -f target/((app.package.name))-*-SNAPSHOT.jar .",
 						"properties": null
 					}
 				],
