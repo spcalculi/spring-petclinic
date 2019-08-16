@@ -101,7 +101,7 @@
 						"dependencies": [],
 						"downloads": [],
 						"files": [
-							"((application.name))*"
+							"((app.package.name))*"
 						],
 						"package_install_command": "",
 						"installed_path": ""
@@ -128,6 +128,7 @@
 					}
 				},
 				"cache_info": {
+					"enabled": true,
 					"paths": [
 						"((gradle.user.home))",
 						"((ivy.defaultCacheDir))",
