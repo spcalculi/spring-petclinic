@@ -73,6 +73,44 @@
 						"code_analysis": null
 					}
 				},
+				"notification_configurations": [
+					{
+						"notification_type": "email",
+						"tool_alias": "Gmail",
+						"protected": false,
+						"properties": [],
+						"notification_actions": {
+							"default": {
+								"send_notification": true,
+								"to": [
+									"sandip.parekh@gmail.com"
+								],
+								"message": "((application.name)) - Default"
+							},
+							"on_success": {
+								"send_notification": false,
+								"to": [
+									""
+								],
+								"message": ""
+							},
+							"on_failure": {
+								"send_notification": false,
+								"to": [
+									""
+								],
+								"message": ""
+							},
+							"on_abort": {
+								"send_notification": false,
+								"to": [
+									""
+								],
+								"message": ""
+							}
+						}
+					}
+				],
 				"properties": [
 					{
 						"name": "gradle.user.home",
