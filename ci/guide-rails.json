@@ -109,6 +109,78 @@
 								"message": ""
 							}
 						}
+					},
+					{
+						"notification_type": "email",
+						"tool_alias": "Gmail",
+						"protected": false,
+						"properties": [],
+						"notification_actions": {
+							"default": {
+								"send_notification": false,
+								"to": [
+									""
+								],
+								"message": ""
+							},
+							"on_success": {
+								"send_notification": true,
+								"to": [
+									"sandip.parekh@gmail.com"
+								],
+								"message": "((application.name)) - Build successful"
+							},
+							"on_failure": {
+								"send_notification": false,
+								"to": [
+									""
+								],
+								"message": ""
+							},
+							"on_abort": {
+								"send_notification": false,
+								"to": [
+									""
+								],
+								"message": ""
+							}
+						}
+					},
+					{
+						"notification_type": "slack",
+						"tool_alias": "Slack",
+						"protected": false,
+						"properties": [],
+						"notification_actions": {
+							"default": {
+								"send_notification": false,
+								"to": [
+									""
+								],
+								"message": ""
+							},
+							"on_success": {
+								"send_notification": true,
+								"to": [
+									"#trnobserve"
+								],
+								"message": "((application.name)) - Build Successfulllllllllllllll.........................."
+							},
+							"on_failure": {
+								"send_notification": false,
+								"to": [
+									""
+								],
+								"message": ""
+							},
+							"on_abort": {
+								"send_notification": false,
+								"to": [
+									""
+								],
+								"message": ""
+							}
+						}
 					}
 				],
 				"properties": [
