@@ -215,6 +215,32 @@
 						],
 						"package_install_command": "",
 						"installed_path": ""
+					},
+					{
+						"name": "javajdk",
+						"dependencies": [],
+						"downloads": [
+							{
+								"link": "https://s3.amazonaws.com/calculi-middleware/jdk-((jdk.version))-linux-x64.tar.gz",
+								"name": "jdk-((jdk.version))-linux-x64.tar.gz"
+							}
+						],
+						"files": [],
+						"package_install_command": "tar xzf jdk/jdk-((jdk.version))-linux-x64.tar.gz\n cp -Rf * ${BOSH_INSTALL_TARGET}/",
+						"installed_path": ""
+					},
+					{
+						"name": "maven360",
+						"dependencies": [],
+						"downloads": [
+							{
+								"link": "http://mirror.cc.columbia.edu/pub/software/apache/maven/maven-3/((maven.version))/binaries/apache-maven-((maven.version))-bin.tar.gz",
+								"name": "apache-maven-((maven.version))-bin.tar.gz"
+							}
+						],
+						"files": [],
+						"package_install_command": "tar xvf maven/apache-maven-((maven.version))-bin.tar.gz -C ${BOSH_INSTALL_TARGET}",
+						"installed_path": ""
 					}
 				],
 				"instance_tags": [
@@ -270,13 +296,22 @@
 						"delete_instances": true
 					},
 					"on_success": {
-						"code_analysis": null
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						}
 					},
 					"on_failure": {
-						"code_analysis": null
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						}
 					},
 					"on_abort": {
-						"code_analysis": null
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						}
 					}
 				},
 				"notification_configurations": [
@@ -357,54 +392,7 @@
 							"((deploy.target.zone.integration))"
 						],
 						"deployment_strategy": {},
-						"dependencies": [
-							{
-								"name": "consul",
-								"release": "consul",
-								"provides": [
-									{
-										"name": "consul_servers.as",
-										"value": "consul_1"
-									}
-								],
-								"consumes": [
-									{
-										"name": "consul_servers.from",
-										"value": "consul_1"
-									}
-								],
-								"properties": [
-									{
-										"name": "consul.servicename",
-										"value": "((consul.servicename))"
-									},
-									{
-										"name": "consul.environment",
-										"value": "((consul.environment))"
-									},
-									{
-										"name": "consul.datacenter",
-										"value": "((consul.datacenter))"
-									},
-									{
-										"name": "consul.server",
-										"value": "false"
-									},
-									{
-										"name": "consul.joinservers",
-										"value": "((consul.joinservers))"
-									},
-									{
-										"name": "calculi.intermediate.cert",
-										"value": "grsecret:tls.cert"
-									},
-									{
-										"name": "calculi.intermediate.key",
-										"value": "grsecret:tls.key"
-									}
-								]
-							}
-						]
+						"dependencies": []
 					}
 				],
 				"post_deployment_actions": {
@@ -480,7 +468,20 @@
 				}
 			}
 		],
-		"default_properties": null,
+		"default_properties": [
+			{
+				"name": "jdk.version",
+				"description": "Java JDK version",
+				"value": "Bu181",
+				"type": "string"
+			},
+			{
+				"name": "maven.version",
+				"description": "Maven version 3.6",
+				"value": "3.6.0",
+				"type": "string"
+			}
+		],
 		"deployment_files": [],
 		"application_init": {
 			"command": "",
@@ -491,12 +492,7 @@
 				"command": "./mvnw spring-boot:run"
 			}
 		},
-		"releases": [
-			{
-				"name": "consul",
-				"version": "latest"
-			}
-		]
+		"releases": []
 	},
 	"organization": {
 		"orgname": "OpenOrg"
