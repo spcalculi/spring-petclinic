@@ -284,6 +284,12 @@
 						"definition": "Environment",
 						"command": "env | sort",
 						"properties": null
+					},
+					{
+						"name": "Execute Tests",
+						"definition": "Execute Tests",
+						"command": "echo \"-------------------------------------------------------------------------------\"\necho \"===========  Run the Tests HERE =====================\"",
+						"properties": null
 					}
 				],
 				"exit_actions": {
@@ -370,7 +376,9 @@
 					}
 				},
 				"package_dependencies": [
-					"((application.name))"
+					"((application.name))",
+					"javajdk",
+					"maven360"
 				],
 				"instance_tags": [
 					{
