@@ -472,7 +472,7 @@
 			{
 				"name": "jdk.version",
 				"description": "Java JDK version",
-				"value": "Bu181",
+				"value": "8u181",
 				"type": "string"
 			},
 			{
