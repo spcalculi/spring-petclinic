@@ -217,7 +217,7 @@
 						"installed_path": ""
 					},
 					{
-						"name": "javajdk",
+						"name": "jdk",
 						"dependencies": [],
 						"downloads": [
 							{
@@ -230,7 +230,7 @@
 						"installed_path": ""
 					},
 					{
-						"name": "maven360",
+						"name": "maven",
 						"dependencies": [],
 						"downloads": [
 							{
@@ -377,8 +377,8 @@
 				},
 				"package_dependencies": [
 					"((application.name))",
-					"javajdk",
-					"maven360"
+					"maven",
+					"jdk"
 				],
 				"instance_tags": [
 					{
