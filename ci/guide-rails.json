@@ -490,14 +490,19 @@
 				"type": "string"
 			}
 		],
-		"deployment_files": [],
+		"deployment_files": [
+			{
+				"source_path": "ci/bin/start-service.sh",
+				"target_path": "bin/start-service.sh"
+			}
+		],
 		"application_init": {
 			"command": "",
 			"arguments": null
 		},
 		"process": {
 			"init": {
-				"command": "./mvnw spring-boot:run"
+				"command": ""
 			}
 		},
 		"releases": []
