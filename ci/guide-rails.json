@@ -261,7 +261,6 @@
 				"cache_info": {
 					"enabled": true,
 					"paths": [
-						"((gradle.user.home))",
 						"((ivy.defaultCacheDir))",
 						"((maven.repo.local))"
 					]
