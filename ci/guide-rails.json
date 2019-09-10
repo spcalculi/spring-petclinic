@@ -271,9 +271,7 @@
 						"((gradle.user.home))"
 					]
 				},
-				"docker_options": {
-					"repository": "((app.package.name))-image"
-				}
+				"docker_options": {}
 			},
 			{
 				"name": "Integration",
