@@ -30,12 +30,6 @@
 				"segment_type": "build",
 				"job_steps": [
 					{
-						"name": "validate",
-						"definition": "Run the maven validate command",
-						"command": "mvn validate",
-						"properties": null
-					},
-					{
 						"name": "compile",
 						"definition": "Run the maven compile command",
 						"command": "mvn compile",
@@ -50,18 +44,16 @@
 					{
 						"name": "copy-jar",
 						"definition": "Copy final JAR to expected location",
-						"command": "cp -f target/((app.package.name))-*-SNAPSHOT.jar .",
+						"command": "echo \"--------------------- copy-jar step --------------------------\"\nls -l\necho \" --------------------- showing target now --------------------\"\nls target\necho \" ------------------ showing parent --------------------------\"\nls ..\necho \" ------------------- end of parent ----------------------------\"\n\ncp -f target/*.[jwe]ar   .",
 						"properties": null
 					}
 				],
 				"exit_actions": {
 					"default": {
-						"fetch_logs": true,
 						"code_analysis": {
 							"publish": true,
 							"properties": null
-						},
-						"delete_instances": true
+						}
 					},
 					"on_success": {
 						"code_analysis": null
@@ -75,110 +67,38 @@
 				},
 				"notification_configurations": [
 					{
-						"notification_type": "email",
-						"tool_alias": "Gmail",
-						"protected": false,
-						"properties": [],
-						"notification_actions": {
-							"default": {
-								"send_notification": true,
-								"to": [
-									"sandip.parekh@gmail.com"
-								],
-								"message": "((application.name)) - Default"
-							},
-							"on_success": {
-								"send_notification": false,
-								"to": [
-									""
-								],
-								"message": ""
-							},
-							"on_failure": {
-								"send_notification": false,
-								"to": [
-									""
-								],
-								"message": ""
-							},
-							"on_abort": {
-								"send_notification": false,
-								"to": [
-									""
-								],
-								"message": ""
-							}
-						}
-					},
-					{
-						"notification_type": "email",
-						"tool_alias": "Gmail",
-						"protected": false,
-						"properties": [],
-						"notification_actions": {
-							"default": {
-								"send_notification": false,
-								"to": [
-									""
-								],
-								"message": ""
-							},
-							"on_success": {
-								"send_notification": true,
-								"to": [
-									"sandip.parekh@gmail.com"
-								],
-								"message": "((application.name)) - Build successful"
-							},
-							"on_failure": {
-								"send_notification": false,
-								"to": [
-									""
-								],
-								"message": ""
-							},
-							"on_abort": {
-								"send_notification": false,
-								"to": [
-									""
-								],
-								"message": ""
-							}
-						}
-					},
-					{
 						"notification_type": "slack",
 						"tool_alias": "Slack",
 						"protected": false,
 						"properties": [],
 						"notification_actions": {
 							"default": {
-								"send_notification": false,
+								"send_notification": true,
 								"to": [
-									""
+									"#trnobserve"
 								],
-								"message": ""
+								"message": "Build Default Notification for ((application.name))"
 							},
 							"on_success": {
 								"send_notification": true,
 								"to": [
 									"#trnobserve"
 								],
-								"message": "((application.name)) - Build Successfulllllllllllllll.........................."
+								"message": "Build SUCCESSFUL for ((application.name))"
 							},
 							"on_failure": {
-								"send_notification": false,
+								"send_notification": true,
 								"to": [
-									""
+									"#trnobserve"
 								],
-								"message": ""
+								"message": "Build FAILED ------- ((application.name))"
 							},
 							"on_abort": {
-								"send_notification": false,
+								"send_notification": true,
 								"to": [
-									""
+									"#trnobserve"
 								],
-								"message": ""
+								"message": "Build ABORTED -x-x-x-x-x-x-x- ((application.name))"
 							}
 						}
 					}
@@ -198,6 +118,11 @@
 						"name": "maven.repo.local",
 						"description": "maven local repository is set to ${SEGMENT_BASE_DIR}/cache/.m2 by default, when caching is enabled. Caches are maintained on the worker where your build gets allocated. For a new worker assigned to the build, the cache will be re-created",
 						"value": "${SEGMENT_BASE_DIR}/cache/.m2"
+					},
+					{
+						"name": "test_dirs",
+						"value": "src/test",
+						"type": "string"
 					}
 				],
 				"deployment_strategy": {},
@@ -214,32 +139,6 @@
 							"((app.package.name))*"
 						],
 						"package_install_command": "",
-						"installed_path": ""
-					},
-					{
-						"name": "jdk",
-						"dependencies": [],
-						"downloads": [
-							{
-								"link": "https://s3.amazonaws.com/calculi-middleware/jdk-((jdk.version))-linux-x64.tar.gz",
-								"name": "jdk-((jdk.version))-linux-x64.tar.gz"
-							}
-						],
-						"files": [],
-						"package_install_command": "tar xzf jdk/jdk-((jdk.version))-linux-x64.tar.gz\n cp -Rf * ${BOSH_INSTALL_TARGET}/",
-						"installed_path": ""
-					},
-					{
-						"name": "maven",
-						"dependencies": [],
-						"downloads": [
-							{
-								"link": "http://mirror.cc.columbia.edu/pub/software/apache/maven/maven-3/((maven.version))/binaries/apache-maven-((maven.version))-bin.tar.gz",
-								"name": "apache-maven-((maven.version))-bin.tar.gz"
-							}
-						],
-						"files": [],
-						"package_install_command": "tar xvf maven/apache-maven-((maven.version))-bin.tar.gz -C ${BOSH_INSTALL_TARGET}",
 						"installed_path": ""
 					}
 				],
@@ -270,152 +169,6 @@
 						"((ivy.defaultCacheDir))",
 						"((maven.repo.local))"
 					]
-				}
-			},
-			{
-				"name": "Integration",
-				"segment_type": "integration",
-				"run_after": [
-					"Build"
-				],
-				"job_steps": [
-					{
-						"name": "Environment",
-						"definition": "Environment",
-						"command": "env | sort",
-						"properties": null
-					},
-					{
-						"name": "Execute Tests",
-						"definition": "Execute Tests",
-						"command": "echo \"-------------------------------------------------------------------------------\"\necho \"===========  Run the Tests HERE =====================\"",
-						"properties": null
-					}
-				],
-				"exit_actions": {
-					"default": {
-						"fetch_logs": true,
-						"code_analysis": {
-							"publish": false,
-							"properties": null
-						},
-						"delete_instances": true
-					},
-					"on_success": {
-						"code_analysis": {
-							"publish": false,
-							"properties": null
-						}
-					},
-					"on_failure": {
-						"code_analysis": {
-							"publish": false,
-							"properties": null
-						}
-					},
-					"on_abort": {
-						"code_analysis": {
-							"publish": false,
-							"properties": null
-						}
-					}
-				},
-				"notification_configurations": [
-					{
-						"notification_type": "email",
-						"tool_alias": "Gmail",
-						"protected": false,
-						"properties": [],
-						"notification_actions": {
-							"default": {
-								"send_notification": false,
-								"to": [
-									""
-								],
-								"message": ""
-							},
-							"on_success": {
-								"send_notification": false,
-								"to": [
-									""
-								],
-								"message": ""
-							},
-							"on_failure": {
-								"send_notification": true,
-								"to": [
-									"sandip.parekh@gmail.com",
-									"sandip.parekh@calculi.com"
-								],
-								"message": "((application.name)) - Failed in Integration"
-							},
-							"on_abort": {
-								"send_notification": false,
-								"to": [
-									""
-								],
-								"message": ""
-							}
-						}
-					}
-				],
-				"deployment_strategy": {
-					"canaries": 1,
-					"max_in_flight": 1,
-					"canary_watch_time": "5000-30000",
-					"update_watch_time": "5000-30000",
-					"serial": false
-				},
-				"application_init": {
-					"command": "",
-					"arguments": null
-				},
-				"process": {
-					"init": {
-						"command": ""
-					}
-				},
-				"package_dependencies": [
-					"((application.name))",
-					"maven",
-					"jdk"
-				],
-				"instance_tags": [
-					{
-						"name": "application.name",
-						"value": "((application.name))"
-					}
-				],
-				"instance_groups": [
-					{
-						"name": "((application.name))",
-						"number_of_instances": 1,
-						"persistent_disk_type": "",
-						"vm_type": "default",
-						"os_type": "default",
-						"networks": [
-							"((deploy.target.network.integration))"
-						],
-						"availability_zones": [
-							"((deploy.target.zone.integration))"
-						],
-						"deployment_strategy": {},
-						"dependencies": []
-					}
-				],
-				"post_deployment_actions": {
-					"instances": null,
-					"loadbalanced": false,
-					"loadbalancer": {
-						"TargetGroupName": "",
-						"TargetGroupPort": 0,
-						"TargetGroupProtocol": "",
-						"TargetType": "",
-						"VPCID": "",
-						"HealthCheckEnabled": false,
-						"HealthCheckPort": "",
-						"UnhealthyThresholdCount": 0
-					}
 				}
 			}
 		],
@@ -478,26 +231,54 @@
 		],
 		"default_properties": [
 			{
-				"name": "jdk.version",
-				"description": "Java JDK version",
-				"value": "8u181",
+				"name": "app.package.name",
+				"value": "spring-petclinic",
 				"type": "string"
 			},
 			{
-				"name": "maven.version",
-				"description": "Maven version 3.6",
-				"value": "3.6.0",
-				"type": "string"
+				"name": "quality.coverage.error",
+				"value": 0.5,
+				"type": "number"
+			},
+			{
+				"name": "quality.coverage.warn",
+				"value": 0.85,
+				"type": "number"
+			},
+			{
+				"name": "quality.security.error",
+				"value": 10,
+				"type": "number"
+			},
+			{
+				"name": "quality.security.warn",
+				"value": 5,
+				"type": "number"
+			},
+			{
+				"name": "quality.lint.error",
+				"value": 20,
+				"type": "number"
+			},
+			{
+				"name": "quality.lint.warn",
+				"value": 5,
+				"type": "number"
 			}
 		],
-		"deployment_files": [],
+		"deployment_files": [
+			{
+				"source_path": "ci/bin/start-service.sh",
+				"target_path": "bin/start-service.sh"
+			}
+		],
 		"application_init": {
 			"command": "",
 			"arguments": null
 		},
 		"process": {
 			"init": {
-				"command": "./mvnw spring-boot:run"
+				"command": ""
 			}
 		},
 		"releases": []
