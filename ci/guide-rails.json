@@ -44,7 +44,9 @@
 					{
 						"name": "copy-jar",
 						"definition": "Copy final JAR to expected location",
+<<<<<<< HEAD
 						"command": "echo \"--------------------- copy-jar step --------------------------\"\nls -l\necho \" --------------------- showing target now --------------------\"\nls target\necho \" ------------------ showing parent --------------------------\"\nls ..\necho \" ------------------- end of parent ----------------------------\"\n\ncp -f target/*.[jwe]ar   .",
+>>>>>>> d6d53e6f90190777eb09a91984c1d4e981d9ffc8
 						"properties": null
 					}
 				],
@@ -75,28 +77,34 @@
 							"default": {
 								"send_notification": true,
 								"to": [
+<<<<<<< HEAD
 									"#trnobserve"
+>>>>>>> d6d53e6f90190777eb09a91984c1d4e981d9ffc8
 								],
 								"message": "Build Default Notification for ((application.name))"
 							},
 							"on_success": {
 								"send_notification": true,
 								"to": [
-									"#trnobserve"
+									"trnobserve"
 								],
 								"message": "Build SUCCESSFUL for ((application.name))"
 							},
 							"on_failure": {
 								"send_notification": true,
 								"to": [
+<<<<<<< HEAD
 									"#trnobserve"
+>>>>>>> d6d53e6f90190777eb09a91984c1d4e981d9ffc8
 								],
 								"message": "Build FAILED ------- ((application.name))"
 							},
 							"on_abort": {
 								"send_notification": true,
 								"to": [
+<<<<<<< HEAD
 									"#trnobserve"
+>>>>>>> d6d53e6f90190777eb09a91984c1d4e981d9ffc8
 								],
 								"message": "Build ABORTED -x-x-x-x-x-x-x- ((application.name))"
 							}
