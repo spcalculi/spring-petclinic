@@ -199,11 +199,11 @@
 				"properties": [],
 				"notification_actions": {
 					"default": {
-						"send_notification": false,
+						"send_notification": true,
 						"to": [
-							""
+							"#trnobserve"
 						],
-						"message": ""
+						"message": "((aplication.name)) - Default notification"
 					},
 					"on_success": {
 						"send_notification": false,
