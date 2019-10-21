@@ -32,7 +32,7 @@
 					{
 						"name": "compile",
 						"definition": "Run the maven compile command",
-						"command": "mvn compile",
+						"command": "mvn compile\n",
 						"properties": null
 					},
 					{
