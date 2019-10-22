@@ -121,7 +121,7 @@
 					},
 					{
 						"name": "test_dirs",
-						"value": "src/test",
+						"value": "",
 						"type": "string"
 					}
 				],
