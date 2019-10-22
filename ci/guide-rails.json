@@ -140,6 +140,34 @@
 						],
 						"package_install_command": "",
 						"installed_path": ""
+					},
+					{
+						"name": "maven",
+						"dependencies": [
+							"jdk"
+						],
+						"downloads": [
+							{
+								"link": "http://mirror.cc.columbia.edu/pub/software/apache/maven/maven-3/((maven.version))/binaries/apache-maven-((maven.version))-bin.tar.gz",
+								"name": "apache-maven-((maven.version))-bin.tar.gz"
+							}
+						],
+						"files": [],
+						"package_install_command": "tar xvf maven/apache-maven-((maven.version))-bin.tar.gz -C ${BOSH_INSTALL_TARGET}",
+						"installed_path": ""
+					},
+					{
+						"name": "jdk",
+						"dependencies": [],
+						"downloads": [
+							{
+								"link": "https://s3.amazonaws.com/calculi-middleware/jdk-((jdk.version))-linux-x64.tar.gz",
+								"name": "jdk-((jdk.version))-linux-x64.tar.gz"
+							}
+						],
+						"files": [],
+						"package_install_command": "tar xzf jdk/jdk-((jdk.version))-linux-x64.tar.gz\n cp -Rf * ${BOSH_INSTALL_TARGET}/\n",
+						"installed_path": ""
 					}
 				],
 				"instance_tags": [
@@ -230,7 +258,9 @@
 					}
 				},
 				"package_dependencies": [
-					"((application.name))"
+					"((application.name))",
+					"maven",
+					"jdk"
 				],
 				"instance_tags": [
 					{
@@ -477,6 +507,18 @@
 				"name": "quality.lint.warn",
 				"value": 5,
 				"type": "number"
+			},
+			{
+				"name": "jdk.version",
+				"description": "jdk version",
+				"value": "8u181",
+				"type": "string"
+			},
+			{
+				"name": "maven.version",
+				"description": "maven version",
+				"value": "3.6.0",
+				"type": "string"
 			}
 		],
 		"deployment_files": [
