@@ -181,7 +181,7 @@
 					{
 						"name": "Start Exec",
 						"definition": "Start Exec",
-						"command": "echo \"-------------------- Start the Test Execution ------------------------\necho \" --------- Need to invoke the jmeter scripts of the package from here--------\"",
+						"command": "echo \"-------------------- Start the Test Execution ------------------------\necho \" --------- Need to invoke the jmeter scripts of the package from here--------\"\necho \" --- Have added some consul properties at the Org level - 2019-10-22---\"",
 						"properties": null
 					}
 				],
@@ -195,13 +195,22 @@
 						"delete_instances": true
 					},
 					"on_success": {
-						"code_analysis": null
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						}
 					},
 					"on_failure": {
-						"code_analysis": null
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						}
 					},
 					"on_abort": {
-						"code_analysis": null
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						}
 					}
 				},
 				"deployment_strategy": {
