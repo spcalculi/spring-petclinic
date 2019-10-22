@@ -517,7 +517,7 @@
 			{
 				"name": "maven.version",
 				"description": "maven version",
-				"value": "3.6.0",
+				"value": "3.6.2",
 				"type": "string"
 			}
 		],
