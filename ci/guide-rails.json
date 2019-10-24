@@ -260,8 +260,7 @@
 				},
 				"package_dependencies": [
 					"((application.name))",
-					"maven",
-					"jdk"
+					"maven"
 				],
 				"instance_tags": [
 					{
