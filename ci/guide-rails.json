@@ -32,19 +32,31 @@
 					{
 						"name": "compile",
 						"definition": "Run the maven compile command",
-						"command": "echo '------------------ initialing maven compile job step ----------------'\nmvn compile\n",
+						"command": "echo '------------------ Executing maven compile job step -----------'\nmvn compile\n",
 						"properties": null
 					},
 					{
 						"name": "package",
 						"definition": "Run the maven package command",
-						"command": "echo '------------------ initialing maven package job step ----------------'\nmvn package",
+						"command": "echo '------------------ Executing maven package job step ------------'\nmvn package",
 						"properties": null
 					},
 					{
 						"name": "copy-jar",
 						"definition": "Copy final JAR to expected location",
 						"command": "echo \"--------------------- copy-jar step --------------------------\"\nls -l\necho \" --------------------- showing target now --------------------\"\nls target\necho \" ------------------ showing parent --------------------------\"\nls ..\necho \" ------------------- end of parent ----------------------------\"\n\ncp -f target/*.[jwe]ar   .",
+						"properties": null
+					},
+					{
+						"name": "Fetch-Chrom",
+						"definition": "Fetch-Chrom",
+						"command": "echo ' ----------------------- Downloading Chrome -----------------------'\nwget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb",
+						"properties": null
+					},
+					{
+						"name": "Install-Chrome",
+						"definition": "Install-Chrome",
+						"command": "echo ' --------------------- Installing Chrome ---------------------------'\nsudo dpkg -i google-chrome-stable_current_amd64.deb",
 						"properties": null
 					}
 				],
