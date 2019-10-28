@@ -38,13 +38,13 @@
 					{
 						"name": "compile",
 						"definition": "Run the maven compile command",
-						"command": "mvn compile\n",
+						"command": "echo '------------------ initialing maven compile job step ----------------'\nmvn compile\n",
 						"properties": null
 					},
 					{
 						"name": "package",
 						"definition": "Run the maven package command",
-						"command": "mvn package",
+						"command": "echo '------------------ initialing maven package job step ----------------'\nmvn package",
 						"properties": null
 					},
 					{
