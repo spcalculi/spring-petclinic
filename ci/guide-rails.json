@@ -56,7 +56,7 @@
 					{
 						"name": "Install-Chrome",
 						"definition": "Install-Chrome",
-						"command": "echo ' --------------------- Installing Chrome ---------------------------'\ngdebi google-chrome-stable_current_amd64.deb",
+						"command": "echo ' ---------------------- Installing Chrome ---------------------------'\ngdebi google-chrome-stable_current_amd64.deb",
 						"properties": null
 					}
 				],
