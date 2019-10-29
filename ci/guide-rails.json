@@ -48,15 +48,15 @@
 						"properties": null
 					},
 					{
-						"name": "Fetch-Chrom",
-						"definition": "Fetch-Chrom",
-						"command": "echo ' ----------------------- Downloading Chrome -----------------------'\nwget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb",
+						"name": "Install pupeteer",
+						"definition": "Install pupeteer",
+						"command": "echo ' ----------------------- Downloading Chrome -----------------------'\nnpm install puppeteer",
 						"properties": null
 					},
 					{
 						"name": "Install-Chrome",
 						"definition": "Install-Chrome",
-						"command": "echo ' ---------------------- Installing Chrome ---------------------------'\ngdebi google-chrome-stable_current_amd64.deb",
+						"command": "echo ' ---------------------- Check version ---------------------------'\ngoogle-chrome --version",
 						"properties": null
 					}
 				],
